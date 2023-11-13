@@ -1,0 +1,15 @@
+TIME=1
+DATE=2
+WEEKDAY=3
+MONTH=4
+DAY_OF_MONTH=5
+DURATION=6
+FROM=7
+TO=8
+FOR=9
+ABOUT=10
+WS=11
+'from'=7
+'to'=8
+'for'=9
+'about'=10
