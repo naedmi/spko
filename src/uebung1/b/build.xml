@@ -7,7 +7,7 @@
 <project default="jar">
 
     <property name="grammar" value="Time" />
-    <property name="antlr" value="antlr-4.13.1-complete.jar" />
+    <property name="antlr" value="/Users/nada/repos/spko/antlr-4.13.1-complete.jar" />
 
     <target name="jar" depends="compile">
         <jar destfile="${grammar}.jar">

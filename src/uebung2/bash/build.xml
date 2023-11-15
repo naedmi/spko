@@ -6,13 +6,13 @@
  -->
 <project default="jar">
 
-    <property name="grammar" value="Time" />
-    <property name="antlr" value="antlr-4.13.1-complete.jar" />
+    <property name="grammar" value="Bash" />
+    <property name="antlr" value="/Users/nada/repos/spko/antlr-4.13.1-complete.jar" />
 
     <target name="jar" depends="compile">
         <jar destfile="${grammar}.jar">
             <fileset dir="." includes="*.class"/>
-            <zipfileset includes="**/*.class" src="${antlr}"/>
+            <zipfileset includes="**/*.class" src="antlr-4.13.1-complete.jar"/>
         </jar>
     </target>
 
@@ -20,7 +20,7 @@
         <javac debug="on" srcdir="." destdir="." sourcepath=""
                listfiles="true" includeantruntime="false">
             <classpath>
-                <pathelement location="${antlr}"/>
+                <pathelement location="antlr-4.13.1-complete.jar"/>
             </classpath>
             <include name="${grammar}*.java"/>
         </javac>
@@ -28,11 +28,11 @@
 
     <target name="generate">
         <echo>java -jar ${antlr} ${grammar}Lexer.g4</echo>
-        <java jar="${antlr}" fork="true" failonerror="true">
+        <java jar="antlr-4.13.1-complete.jar" fork="true" failonerror="true">
             <arg value="${grammar}Lexer.g4" />
         </java>
         <echo>java -jar ${antlr} ${grammar}Parser.g4</echo>
-        <java jar="${antlr}" fork="true" failonerror="true">
+        <java jar="antlr-4.13.1-complete.jar" fork="true" failonerror="true">
             <arg value="${grammar}Parser.g4" />
         </java>
     </target>

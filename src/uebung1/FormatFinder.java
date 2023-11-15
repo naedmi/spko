@@ -20,18 +20,15 @@ public class FormatFinder {
                 System.out.printf("TEXT(\"%s\")", matcher.group());
             }
         }
+        System.out.println();
     }
 
     public static void main(String[] args) {
         FormatFinder ff = new FormatFinder();
         ff.find("xxx %d yyy%n"); // TEXT("xxx ")FORMAT("%d")TEXT(" yyy")FORMAT("%n")
-        System.out.println();
         ff.find("xxx% 012d yyy%%"); // TEXT("xxx")FORMAT("% 012d")TEXT(" yyy")FORMAT("%%")
-        System.out.println();
         ff.find("xxx%1$d yyy"); // TEXT("xxx")FORMAT("%1$d")TEXT(" yyy")
-        System.out.println();
         ff.find("%1$0+(32.10fyyy"); // FORMAT("%1$0+(32.10f")TEXT("yyy")
-        System.out.println();
         ff.find("Wochentag: %tA Uhrzeit: %tT"); // TEXT("Wochentag: ")FORMAT("%tA")TEXT(" Uhrzeit: ")FORMAT("%tT")
     }
 }

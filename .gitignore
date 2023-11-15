@@ -4,6 +4,7 @@ out/
 !**/src/test/**/out/
 
 .idea/
+gen/
 
 ### Eclipse ###
 .apt_generated
@@ -29,3 +30,5 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+/src/uebung2/function/
+/src/uebung2/timeInterval/

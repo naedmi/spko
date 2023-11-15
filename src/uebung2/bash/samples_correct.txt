@@ -1,0 +1,21 @@
+echo Hello World;
+
+ls -l;
+
+cat file.txt | grep "pattern";
+
+command1 && command2;
+
+command1 || command2;
+
+echo $(date);
+
+echo $name;
+
+echo "Start" && cat file.txt | grep "pattern";
+
+git commit || echo "Commit failed";
+
+ls -l > file.txt;
+
+test -l -s;
