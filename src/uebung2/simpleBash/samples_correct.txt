@@ -1,0 +1,19 @@
+echo Hello World;
+
+ls -l;
+
+cat file.txt;
+
+grep "pattern";
+
+command1;
+
+command2;
+
+echo "hey";
+
+git commit;
+
+ls -l > file.txt;
+
+test -l -s;

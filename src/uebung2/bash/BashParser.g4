@@ -1,5 +1,7 @@
 parser grammar BashParser;
 
+options { tokenVocab=BashLexer; }
+
 // Parser rules
 
 start: completeCommand* EOF;
