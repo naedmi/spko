@@ -6,13 +6,9 @@ options { tokenVocab=SimpleBashLexer; }
 
 start: completeCommand* EOF;
 
-completeCommand: command (OUTPUT FILENAME)* SEMICOLON;
+completeCommand: commandName (OUTPUT FILENAME)? SEMICOLON;
 
-command: commandChain;
-
-commandChain: commandElement (SPACE commandElement)?;
-
-commandElement: STRING parameter*;
+commandName: STRING parameter*;
 
 parameter: OPTION | STRING | FILENAME | quotation;
 
