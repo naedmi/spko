@@ -3,12 +3,14 @@
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src/uebung2" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/uebung2/simpleBash" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/gen" />
       <excludeFolder url="file://$MODULE_DIR$/src/uebung2/function" />
       <excludeFolder url="file://$MODULE_DIR$/src/uebung2/timeInterval" />
       <excludeFolder url="file://$MODULE_DIR$/src/uebung2/timeInterval/gen" />
       <excludeFolder url="file://$MODULE_DIR$/src" />
+      <excludeFolder url="file://$MODULE_DIR$/src/uebung2/bash" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

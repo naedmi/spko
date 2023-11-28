@@ -6,8 +6,8 @@
  -->
 <project default="jar">
 
-    <property name="grammar" value="SimpleBash" />
-    <property name="antlr" value="/Users/nada/repos/spko/antlr-4.13.1-complete.jar" />
+    <property name="grammar" value="SimpleBash"/>
+    <property name="antlr" value="/Users/nada/repos/spko/antlr-4.13.1-complete.jar"/>
 
     <target name="jar" depends="compile">
         <jar destfile="${grammar}.jar">
@@ -29,11 +29,11 @@
     <target name="generate">
         <echo>java -jar ${antlr} ${grammar}Lexer.g4</echo>
         <java jar="antlr-4.13.1-complete.jar" fork="true" failonerror="true">
-            <arg value="${grammar}Lexer.g4" />
+            <arg value="${grammar}Lexer.g4"/>
         </java>
         <echo>java -jar ${antlr} ${grammar}Parser.g4</echo>
         <java jar="antlr-4.13.1-complete.jar" fork="true" failonerror="true">
-            <arg value="${grammar}Parser.g4" />
+            <arg value="${grammar}Parser.g4"/>
         </java>
     </target>
 
