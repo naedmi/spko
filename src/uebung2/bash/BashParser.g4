@@ -6,16 +6,16 @@ options { tokenVocab=BashLexer; }
 
 start: completeCommand* EOF;
 
-completeCommand: command (PIPE command)* (OUTPUT FILENAME)* SEMICOLON;
+completeCommand: commandCombination (PIPE commandCombination)* (OUTPUT FILENAME)* SEMICOLON;
 
-command: commandChain ((AND | OR) commandChain)*;
+commandCombination: commandChain ((AND | OR) commandChain)*;
 
-commandChain: commandElement (SPACE commandElement)?;
+commandChain: commandName (SPACE commandName)?;
 
-commandElement: STRING parameter*;
+commandName: STRING parameter*;
 
 parameter: OPTION | STRING | FILENAME | quotation | substitution;
 
 quotation: QUOTE (STRING | FILENAME)* QUOTE;
 
-substitution: DOLLAR LPAREN commandElement RPAREN | DOLLAR commandElement;
+substitution: DOLLAR LPAREN commandName RPAREN | DOLLAR commandName;
