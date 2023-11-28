@@ -20,4 +20,8 @@ test -l -s;
 
 echo "hello" > /home/user/file.txt;
 
-ls -l > C:\Users\user\Documents\file.txt;
+mkdir;
+
+grep;
+
+touch;
