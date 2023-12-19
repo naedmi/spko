@@ -3,9 +3,24 @@
 Am Java-Programm "Procedural" ist eindeutig prozedural, dass es die Aufgaben in Prozeduren (Methoden) aufteilt.
 Somit gibt es einzelne Methoden für das Einlesen der Input-File in Form von einer Liste von Strings, eine weitere
 Methode für das Entfernen von leeren Zeilen, eine für das Entfernen für kurze Zeilen, und eine letzte,
-um die Gesamtzahl der Zeilen zu berechnen. Diese Methoden werden nacheinander in der Main-Methode aufgerufen, um die
+um die Gesamtzeilenlänge zu berechnen. Diese Methoden werden nacheinander in der Main-Methode aufgerufen, um die
 Aufgaben zu lösen.
 An diese Prozeduren werden die Daten, die sie verarbeiten sollen, als Parameter übergeben. Weiterhin werden
 auch globale Variablen definiert, in denen die Prozeduren ihre Ergebnisse als Seiteneffekte ablegen.
-Außerdem enthält das Programm Konstrollstrukturen, wie z.B. eine while-Schleife in readLines() oder eine for-Schleife in
+Außerdem enthält das Programm Kontrollstrukturen, wie z.B. eine while-Schleife in readLines() oder eine for-Schleife in
 totalLineLengths().
+
+4c
+
+Die Programme Procedural und Functional wurden beide mit der gleichen Input-Datei getestet. Dabei kamen folgende Ergebnisse
+heraus:
+
+Procedural:
+result = 20429 (5929 microsec)
+
+Functional:
+result = 20429 (9154 microsec)
+
+Die Laufzeit des funktionalen Programms ist also ca. 1,5-mal so lang wie die des prozeduralen Programms.
+Dies könnte an der Verwendung von Streams in der funktionalen Variante liegen, die möglicherweise mehr Overhead
+und damit mehr Laufzeit verursacht.
