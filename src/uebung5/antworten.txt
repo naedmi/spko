@@ -1,4 +1,4 @@
- Lösen Sie die Aufgaben von Folie 25 (rechte Spalte der Tabelle),
+ 5 a) Lösen Sie die Aufgaben von Folie 25 (rechte Spalte der Tabelle),
  26 (Berechnung Fakultät)
  und 28 (Anfragen letzter Spiegelpunkt) aus Eck-Prolog.pdf.
 
@@ -78,3 +78,61 @@
 
  oder beliebiger Inhalt von X, der mit Y zusammen eine Liste ergibt, die
  [1,2,3,4] und den Inhalt von X enthält.
+
+b) Programmieren Sie ein Prädikat sum, das die Summe einer Liste von Zahlen berechnet.
+   Hinweis: Sie müssen Rekursion verwenden.
+
+% Base case: Sum of empty array is 0
+sum([], 0).
+
+% Recursive case: Sum of List is Head plus the sum of Tail
+sum(List, Result) :-
+    List = [Head|Tail],
+    sum(Tail, SubResult),
+    Result is Head + SubResult.
+
+?-sum([2,4,8], X).
+X = 14
+
+c) Sie wollen zu einer Werksbesichtigung von BioNTech in Mainz reisen. Dazu brauchen Sie eine Bahnverbindung.
+Gegeben sind die folgenden Fakten:
+       zug(konstanz, 08.39, offenburg, 10.59).
+       zug(konstanz, 08.39, karlsruhe, 11.49).
+       zug(konstanz, 08.53, singen, 09.26).
+       zug(singen, 09.37, stuttgart, 11.32).
+       zug(offenburg, 11.27, mannheim, 12.24).
+       zug(karlsruhe, 12.06, mainz, 13.47).
+       zug(stuttgart, 11.51, mannheim, 12.28).
+       zug(mannheim, 12.39, mainz, 13.18).
+
+   Definieren Sie ein Prädikat verbindung, das beschreibt, ob zwischen zwei Städten nach einer gegebenen
+   Abfahrtszeit eine Verbindung inklusive Umsteigen existiert.
+   Hinweise: Sie brauchen auch hier Rekursion. Beim Umsteigen muss Abfahrtszeit > Ankunftszeit gelten.
+
+   Eine Abfrage verbindung(konstanz, 8.00, mainz, Reiseplan) soll nacheinander die möglichen Reiseverbindungen
+   nach 8 Uhr in der Variablen Reiseplan liefern.
+   Die Variable Reiseplan soll eine Liste von Teilstrecken in Form von zug-Strukturen sein.
+
+% Base case: Direct connection between Start and Destination
+
+verbindung(Start, Startzeit, Ziel, Reiseplan) :-
+    zug(Start, Abfahrtszeit, Ziel, Ankunftszeit),
+    Abfahrtszeit > Startzeit,
+    Reiseplan = [zug(Start, Abfahrtszeit, Ziel, Ankunftszeit)].
+
+% Recursive case: Connection between Start and Destination with change
+
+verbindung(Start, Startzeit, Ziel, Reiseplan) :-
+    zug(Start, Abfahrtszeit, Zwischenziel, Ankunftszeit),
+    Abfahrtszeit > Startzeit,
+    verbindung(Zwischenziel, Ankunftszeit, Ziel, SubReiseplan),
+    Reiseplan = [zug(Start, Abfahrtszeit, Zwischenziel, Ankunftszeit)|SubReiseplan].
+
+?- verbindung(konstanz, 8.00, stuttgart, X).
+X = [zug(konstanz,8.53,singen,9.26), zug(singen,9.37,stuttgart,11.32)]
+
+?- verbindung(konstanz, 8.00, mainz, X).
+X = [zug(konstanz,8.39,offenburg,10.59), zug(offenburg,11.27,mannheim,12.24), zug(mannheim,12.39,mainz,13.18)]
+X = [zug(konstanz,8.39,karlsruhe,11.49), zug(karlsruhe,12.06,mainz,13.47)]
+X = [zug(konstanz,8.53,singen,9.26), zug(singen,9.37,stuttgart,11.32), zug(stuttgart,11.51,mannheim,12.28),
+    zug(mannheim,12.39,mainz,13.18)]
