@@ -1,0 +1,80 @@
+ Lösen Sie die Aufgaben von Folie 25 (rechte Spalte der Tabelle),
+ 26 (Berechnung Fakultät)
+ und 28 (Anfragen letzter Spiegelpunkt) aus Eck-Prolog.pdf.
+
+ 25: Matching von Listen
+ ?- [X,Y,Z] = [john,likes,fish] .
+ X = john,
+ Y = likes,
+ Z = fish
+
+ ?- [cat] = [X|Y] .
+ X = cat,
+ Y = []
+
+ ?- [X,Y|Z] = [mary,likes,wine] .
+ X = mary,
+ Y = likes,
+ Z = [wine]
+
+ ?- [[the,Y]|Z] = [[X,hare],[is,here]] .
+ X = the,
+ Y = hare,
+ Z = [[is, here]]
+
+ ?- [golden|T] = [golden,norfolk] .
+ T = [norfolk]
+
+ ?- [white,horse] = [horse,X] .
+ false
+
+ ?- [white|Q] = [P,horse] .
+ P = white,
+ Q = [horse]
+
+
+ 26: Definieren Sie die Berechnung der Fakultät in Prolog.
+ % Base case: Factorial of 0 is 1
+ factorial(0, 1).
+
+ % Recursive case: Factorial of N is N multiplied by the factorial of N-1
+ factorial(N, Result) :-
+     N > 0,
+     N1 is N - 1,
+     factorial(N1, SubResult),
+     Result is N * SubResult.
+
+ ?- factorial(10, Result).
+    Result = 3628800
+
+ ?- factorial(0, Result).
+    Result = 1
+
+ 28: Was berechnen folgende Anfragen?
+
+ append(X, Y, [1,2,3,4]).
+ X = [],
+ Y = [1, 2, 3, 4]
+
+ X = [1],
+ Y = [2, 3, 4]
+
+ X = [1, 2],
+ Y = [3, 4]
+
+ X = [1, 2, 3],
+ Y = [4]
+
+ X = [1, 2, 3, 4],
+ Y = []
+
+ false
+
+ ---------------------------------------------
+
+ append(X, [1,2,3,4], Y).
+ X = []
+ Y = [1,2,3,4]
+
+ oder beliebiger Inhalt von X, der mit Y zusammen eine Liste ergibt, die
+ [1,2,3,4] und den Inhalt von X enthält.
