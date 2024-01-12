@@ -34,37 +34,43 @@ public class BashBuilder extends SimpleBashParserBaseListener {
         }
     }
 
-    @Override
-    public void exitCommandName(SimpleBashParser.CommandNameContext ctx) {
-        if (ctx.getChildCount() > 1) {
-            Parameter[] parameters = new Parameter[ctx.getChildCount() - 1];
-            for (int i = 1; i < ctx.getChildCount(); i++) {
-                parameters[i - 1] = new Parameter(ctx.getChild(i).getText());
-            }
-            this.stack.push(new Command(ctx.getChild(0).getText(), parameters, null));
-        } else {
-            String commandName = ctx.getChild(0).getText();
-            switch (commandName) {
-                case "mkdir":
-                    System.out.println("usage: mkdir [-pv] [-m mode] directory_name ...");
-                    System.exit(1);
-                case "touch":
-                    System.out.println("usage: touch [-A [-][[hh]mm]SS] [-achm] [-r file] [-t [[CC]YY]MMDDhhmm[.SS]]\n" +
-                            "       [-d YYYY-MM-DDThh:mm:SS[.frac][tz]] file ...");
-                    System.exit(1);
-                case "grep":
-                    System.out.println("""
-                            usage: grep [-abcdDEFGHhIiJLlMmnOopqRSsUVvwXxZz] [-A num] [-B num] [-C[num]]
-                            \t[-e pattern] [-f file] [--binary-files=value] [--color=when]
-                            \t[--context[=num]] [--directories=action] [--label] [--line-buffered]
-                            \t[--null] [pattern] [file ...]""");
-                    System.exit(1);
-                default:
-                    this.stack.push(new Command(commandName, new Parameter[0], null));
-            }
-        }
+@Override
+public void exitCommandName(SimpleBashParser.CommandNameContext ctx) {
+    String commandName = ctx.getChild(0).getText();
 
+    if (ctx.getChildCount() > 1) {
+        Parameter[] parameters = new Parameter[ctx.getChildCount() - 1];
+        for (int i = 1; i < ctx.getChildCount(); i++) {
+            parameters[i - 1] = new Parameter(ctx.getChild(i).getText());
+        }
+        this.stack.push(new Command(commandName, parameters, null));
+    } else {
+        verifyUsageWithoutParameters(commandName);
+        this.stack.push(new Command(commandName, new Parameter[0], null));
     }
+}
+
+private void verifyUsageWithoutParameters(String commandName) {
+    // examples: mkdir, touch, grep (output examples taken from MacOS)
+    switch (commandName) {
+        case "mkdir":
+            System.out.println("usage: mkdir [-pv] [-m mode] " +
+                    "directory_name ...");
+            System.exit(1);
+        case "touch":
+            System.out.println("usage: touch [-A [-][[hh]mm]SS] " +
+                    "[-achm] [-r file] [-t [[CC]YY]MMDDhhmm[.SS]]" +
+                    "[-d YYYY-MM-DDThh:mm:SS[.frac][tz]] file ...");
+            System.exit(1);
+        case "grep":
+            System.out.println("""
+                    usage: grep [-abcdDEFGHhIiJLlMmnOopqRSsUVvwXxZz] [-A num] [-B num] [-C[num]]
+                        [-e pattern] [-f file] [--binary-files=value] [--color=when]
+                        [--context[=num]] [--directories=action] [--label] [--line-buffered]
+                        [--null] [pattern] [file ...]""");
+            System.exit(1);
+    }
+}
 
     private void verifyPath(String filename) {
         // check drive letter
