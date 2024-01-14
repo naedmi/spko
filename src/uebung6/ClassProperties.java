@@ -22,5 +22,4 @@ public class ClassProperties {
                         .replace("]", "") + ")")
                 .toArray(String[]::new);
     }
-
 }

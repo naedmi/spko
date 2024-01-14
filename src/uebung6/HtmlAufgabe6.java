@@ -16,7 +16,7 @@ public final class HtmlAufgabe6 {
             Class.forName("java.time.Month")
         };
 
-        String filename = "C:\\repos\\spko\\src\\uebung6\\aufgabe6.stg";
+        String filename = "aufgabe6.stg";
         ST templ = new STGroupFile(filename).getInstanceOf("overview");
         templ.add("c", Arrays.stream(classes).map(ClassProperties::new).toArray(ClassProperties[]::new));
         String result = templ.render();
