@@ -1,0 +1,39 @@
+// aufgabe6.stg
+delimiters "$", "$"
+
+overview(c) ::= <<
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<style type="text/css">
+th, td { border-bottom: thin solid; padding: 4px; text-align: left; }
+td { font-family: monospace }
+</style>
+</head>
+<body>
+<h1>Sprachkonzepte, Aufgabe 6</h1>
+$c:table(); separator="\n"$
+</body>
+</html>
+>>
+
+table(c) ::= <<
+<h2>$c.name$:</h2>
+<table>
+<tr>$if(c.hasInterfaces)$<th>Interface</th>$endif$<th>Methods</th></tr>
+$if(c.hasInterfaces)$$c.interfaces:tableInterface()$$else$<tr><td>$c:tableMethods()$</td></tr>$endif$
+</table>
+>>
+
+tableInterface(i) ::= <<
+<tr>
+<td valign=top>$i.name$</td>
+<td>$i:tableMethods()$</td>
+</tr>
+>>
+
+tableMethods(c) ::= <<
+$if(c.hasMethods)$
+$c.methods; separator="<br>"$
+$endif$
+>>

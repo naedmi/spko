@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <style type="text/css">
+        th, td { border-bottom: thin solid; padding: 4px; text-align: left; }
+        td { font-family: monospace }
+    </style>
+</head>
+<body>
+<h1>Sprachkonzepte, Aufgabe 6</h1>
+<h2>class java.lang.String:</h2>
+<table>
+    <tr><th>Interface</th><th>Methods</th></tr>
+    <tr>
+        <td valign=top>java.io.Serializable</td>
+        <td></td>
+    </tr><tr>
+    <td valign=top>java.lang.Comparable</td>
+    <td>
+        int compareTo(java.lang.Object)
+    </td>
+</tr><tr>
+    <td valign=top>java.lang.CharSequence</td>
+    <td>
+        int compare(java.lang.CharSequence, java.lang.CharSequence)<br>int length()<br>java.lang.String toString()<br>java.lang.CharSequence subSequence(int, int)<br>char charAt(int)<br>java.util.stream.IntStream chars()<br>java.util.stream.IntStream codePoints()
+    </td>
+</tr>
+</table>
+<h2>interface java.util.Iterator:</h2>
+<table>
+    <tr><th>Methods</th></tr>
+    <tr><td>
+        java.lang.Object next()<br>boolean hasNext()<br>void forEachRemaining(java.util.function.Consumer)<br>void remove()
+    </td></tr>
+</table>
+<h2>class java.time.Month:</h2>
+<table>
+    <tr><th>Interface</th><th>Methods</th></tr>
+    <tr>
+        <td valign=top>java.time.temporal.TemporalAccessor</td>
+        <td>
+            long getLong(java.time.temporal.TemporalField)<br>int get(java.time.temporal.TemporalField)<br>java.lang.Object query(java.time.temporal.TemporalQuery)<br>java.time.temporal.ValueRange range(java.time.temporal.TemporalField)<br>boolean isSupported(java.time.temporal.TemporalField)
+        </td>
+    </tr><tr>
+    <td valign=top>java.time.temporal.TemporalAdjuster</td>
+    <td>
+        java.time.temporal.Temporal adjustInto(java.time.temporal.Temporal)
+    </td>
+</tr>
+</table>
+</body>
+</html>
